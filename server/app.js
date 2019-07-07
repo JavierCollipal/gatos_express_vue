@@ -2,7 +2,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const PORT = 4000;
+const dotenv = require('dotenv');
+dotenv.config();
+const PORT = process.env.PORT;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
