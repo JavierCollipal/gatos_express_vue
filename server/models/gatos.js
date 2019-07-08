@@ -4,6 +4,4 @@ const gatoEsquema = {
     apellido: String
 };
 
-const gato = db.model('Gatos',gatoEsquema);
-
-module.exports = gato;
+module.exports = db.model('Gatos',gatoEsquema);

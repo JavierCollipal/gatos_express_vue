@@ -22,5 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', indexRouter);
 app.get('/traerTodos',gatosRouter);
 app.get('/crearDB',gatosRouter);
+app.post('/crearGato',gatosRouter);
 
 module.exports = app;

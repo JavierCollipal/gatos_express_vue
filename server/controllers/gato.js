@@ -1,4 +1,4 @@
-const gato = require('../models/gatos');
+const  gato = require('../models/gatos');
 
 exports.crearDB = async (request, response, next) => {
 
@@ -20,9 +20,8 @@ exports.crearDB = async (request, response, next) => {
         });
 }
 
-
 exports.traerTodos = async (request, response, next) => {
-
+    
     await gato.find()
         .then(documento => {
             response.json(documento);
@@ -35,16 +34,23 @@ exports.traerTodos = async (request, response, next) => {
             });
         });
 }
-exports.crearGatito  = async(request, response, next) => {
 
-        let gato = new gato(request.query);
-        await gato.save().then( gato => {
-            response.jsonp(gato);
-        }).catch( error => {
+exports.crearGato  = async(request, response, next) => {
+        
+        let documento = new gato(request.query);
+    
+         await documento.save()
+        .then( documento => {
+            response.json({
+                status: 200,
+                mensaje: 'gato creado con exito'
+            });
+        })
+        .catch( error => {
             console.error(error);
             response.json({
                 status: 400,
                 mensaje: 'no fue posible crear el gato'
             });
         });
-    }
+}
