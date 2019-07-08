@@ -1,0 +1,56 @@
+const  gato = require('../models/gatos');
+
+exports.crearDB = async (request, response, next) => {
+
+    let prueba = new gato({ nombre: 'lanita', apellido: 'Aguilar' });
+    await prueba.save()
+        .then(() => {
+            response.json(
+                {
+                    status: 200,
+                    mensaje: 'se crearon todos los gatos de la casa'
+                });
+        })
+        .catch(error => {
+            console.error(error);
+            response.json({
+                status: 400,
+                mensaje: 'no fue posible crear el collection'
+            });
+        });
+}
+
+exports.traerTodos = async (request, response, next) => {
+    
+    await gato.find()
+        .then(documento => {
+            response.json(documento);
+        })
+        .catch(error => {
+            console.error(error);
+            response.json({
+                status: 400,
+                mensaje: 'no existen gatos creados'
+            });
+        });
+}
+
+exports.crearGato  = async(request, response, next) => {
+        
+        let documento = new gato(request.query);
+    
+         await documento.save()
+        .then( documento => {
+            response.json({
+                status: 200,
+                mensaje: 'gato creado con exito'
+            });
+        })
+        .catch( error => {
+            console.error(error);
+            response.json({
+                status: 400,
+                mensaje: 'no fue posible crear el gato'
+            });
+        });
+}
