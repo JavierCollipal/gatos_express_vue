@@ -1,4 +1,4 @@
-const gato = require('./models/gatos');
+const gato = require('../models/gatos');
 
 exports.crearDB = async (request, response, next) => {
 
@@ -25,7 +25,7 @@ exports.traerTodos = async (request, response, next) => {
 
     await gato.find()
         .then(documento => {
-            response.jsonp(documento);
+            response.json(documento);
         })
         .catch(error => {
             console.error(error);

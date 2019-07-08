@@ -1,20 +1,26 @@
+//requires
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
+const morgan = require('morgan');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var gatosRouter = require('./routes/gato');
+var jsonParser = bodyParser.json();
+
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
+//configurando express
+app.use(morgan('tiny'));
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
+//definiendo rutas
+app.get('/', indexRouter);
+app.get('/traerTodos',gatosRouter);
+app.get('/crearDB',gatosRouter);
 
 module.exports = app;
