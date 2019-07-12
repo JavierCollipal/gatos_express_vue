@@ -62,3 +62,14 @@ exports.crearGato = async (request, response, next) => {
         });
 }
 
+exports.actualizarGatoPorNombre = async(request, response, next) => {
+    let nombreGato  = request.query.nombre;
+    await gato.findOne({nombre: nombreGato})
+    .then(esquema =>{
+    response.status(200).jsonp( esquema );
+    })
+    .catch(error =>{
+        response.status(400).jsonp( error );
+    });
+}
+
