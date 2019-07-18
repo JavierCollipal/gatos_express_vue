@@ -23,5 +23,5 @@ app.get('/', indexRouter);
 app.get('/traerTodos',gatosRouter);
 app.get('/crearDB',gatosRouter);
 app.post('/crearGato',gatosRouter);
-
+app.put('/actualizarGatoPorNombre',gatosRouter);
 module.exports = app;
